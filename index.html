@@ -1,161 +1,171 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ARK Breeding Stats</title>
 
 <style>
-:root{
---bg:#0b1117;
---card:#121c25;
---line:#273847;
---text:#eef5fa;
---muted:#8fa3b4;
---accent:#52d7b0
+* {
+  box-sizing: border-box;
 }
 
-*{box-sizing:border-box}
-
-body{
-margin:0;
-background:var(--bg);
-color:var(--text);
-font-family:system-ui,-apple-system,sans-serif
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #0b1117;
+  color: white;
 }
 
-header{
-position:sticky;
-top:0;
-z-index:5;
-background:#0b1117ee;
-backdrop-filter:blur(12px);
-padding:16px;
-border-bottom:1px solid var(--line)
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 16px;
+  background: #101922;
+  border-bottom: 1px solid #293846;
 }
 
-.wrap{max-width:850px;margin:auto}
-
-h1{
-font-size:21px;
-margin:0 0 12px
+.container {
+  max-width: 800px;
+  margin: auto;
 }
 
-input,button{font:inherit}
-
-.search{
-width:100%;
-padding:13px;
-background:#080d12;
-color:white;
-border:1px solid var(--line);
-border-radius:11px;
-font-size:16px
+h1 {
+  margin: 0 0 12px;
+  font-size: 22px;
 }
 
-main{padding:14px}
-
-.toolbar{
-display:flex;
-gap:8px;
-margin-bottom:12px
+input {
+  font-size: 16px;
 }
 
-button{
-border:1px solid var(--line);
-border-radius:10px;
-background:#17232d;
-color:white;
-padding:10px 13px;
-font-weight:700
+#search {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #344757;
+  background: #080d12;
+  color: white;
 }
 
-.primary{
-background:var(--accent);
-color:#06110e;
-border:0
+main {
+  max-width: 800px;
+  margin: auto;
+  padding: 14px;
 }
 
-.list{
-display:grid;
-gap:8px
+.toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
 }
 
-.creature{
-background:var(--card);
-border:1px solid var(--line);
-border-radius:12px;
-padding:14px;
-cursor:pointer;
-display:flex;
-justify-content:space-between;
-align-items:center
+button {
+  padding: 11px 14px;
+  border-radius: 9px;
+  border: 1px solid #344757;
+  background: #17242e;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.creature small{color:var(--muted)}
-
-.saved{
-color:var(--accent);
-font-size:12px
+button.primary {
+  background: #51d6ae;
+  color: #06110d;
+  border: none;
 }
 
-#editor{display:none}
-
-.back{margin-bottom:12px}
-
-.panel{
-background:var(--card);
-border:1px solid var(--line);
-border-radius:14px;
-padding:14px
+#creatureList {
+  display: grid;
+  gap: 8px;
 }
 
-.stathead,.statrow{
-display:grid;
-grid-template-columns:1.2fr .65fr 1fr;
-gap:9px;
-align-items:center
+.creature {
+  padding: 15px;
+  background: #121c25;
+  border: 1px solid #293846;
+  border-radius: 11px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.stathead{
-color:var(--muted);
-font-size:12px;
-padding:4px 0 8px
+.creature:active {
+  background: #1a2935;
 }
 
-.statrow{
-padding:8px 0;
-border-top:1px solid var(--line)
+.creature-name {
+  font-weight: 700;
 }
 
-.statrow input{
-width:100%;
-background:#080d12;
-color:white;
-border:1px solid var(--line);
-border-radius:9px;
-padding:11px;
-text-align:right
+.saved {
+  color: #51d6ae;
+  font-size: 13px;
 }
 
-.statname{font-weight:700}
-
-.actions{
-display:flex;
-gap:8px;
-margin-top:14px
+#editor {
+  display: none;
 }
 
-.note{
-color:var(--muted);
-font-size:12px;
-line-height:1.4
+.panel {
+  padding: 15px;
+  background: #121c25;
+  border: 1px solid #293846;
+  border-radius: 12px;
 }
 
-@media(max-width:500px){
-.stathead,.statrow{
-grid-template-columns:1fr 70px 115px
+.stat-header,
+.stat-row {
+  display: grid;
+  grid-template-columns: 1fr 80px 125px;
+  gap: 8px;
+  align-items: center;
 }
+
+.stat-header {
+  color: #8fa3b4;
+  font-size: 12px;
+  padding-bottom: 8px;
+}
+
+.stat-row {
+  border-top: 1px solid #293846;
+  padding: 9px 0;
+}
+
+.stat-name {
+  font-weight: 600;
+}
+
+.stat-row input {
+  width: 100%;
+  padding: 12px 8px;
+  text-align: right;
+  border-radius: 8px;
+  border: 1px solid #344757;
+  background: #080d12;
+  color: white;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.note {
+  color: #8fa3b4;
+  font-size: 12px;
+}
+
+@media (max-width: 500px) {
+  .stat-header,
+  .stat-row {
+    grid-template-columns: 1fr 65px 105px;
+  }
 }
 </style>
 </head>
@@ -163,319 +173,801 @@ grid-template-columns:1fr 70px 115px
 <body>
 
 <header>
-<div class="wrap">
+<div class="container">
+
 <h1>ARK Breeding Stats</h1>
-<input id="q" class="search" placeholder="Search creatures…" oninput="render()">
+
+<input
+  id="search"
+  type="search"
+  placeholder="Search creatures..."
+>
+
 </div>
 </header>
 
-<main class="wrap">
+<main>
 
-<section id="browser">
+<div id="browser">
 
 <div class="toolbar">
-<button class="primary" onclick="addCreature()">+ Add modded creature</button>
-<button onclick="showSaved()">Saved only</button>
+
+<button id="addButton" class="primary">
++ Add Creature
+</button>
+
+<button id="savedButton">
+Saved Only
+</button>
+
 </div>
 
-<div id="count" class="note" style="margin-bottom:10px"></div>
-<div id="list" class="list"></div>
+<p id="creatureCount" class="note"></p>
 
-</section>
+<div id="creatureList"></div>
 
-<section id="editor">
+</div>
 
-<button class="back" onclick="closeEditor()">← All creatures</button>
+
+<div id="editor">
+
+<button id="backButton">
+← All Creatures
+</button>
+
+<br><br>
 
 <div class="panel">
 
-<h2 id="title" style="margin-top:0"></h2>
+<h2 id="creatureTitle"></h2>
 
-<div class="stathead">
-<span>Stat</span>
-<span>Points</span>
-<span>Value</span>
+<div class="stat-header">
+<div>Stat</div>
+<div>Points</div>
+<div>Value</div>
 </div>
 
-<div id="rows"></div>
+<div id="statRows"></div>
 
 <div class="actions">
-<button class="primary" onclick="saveCurrent()">Save stats</button>
-<button onclick="clearCurrent()">Clear</button>
+
+<button id="saveButton" class="primary">
+Save Stats
+</button>
+
+<button id="clearButton">
+Clear
+</button>
+
 </div>
 
 <p class="note">
-Values are saved on this iPad in Safari. Melee can be entered as the percentage shown in-game.
+Stats are saved on this device.
 </p>
 
 </div>
-</section>
+
+</div>
 
 </main>
 
+
 <script>
 
-const DEFAULTS=[
-"Achatina","Acrocanthosaurus","Allosaurus","Alpha Basilisk",
-"Alpha Carnotaurus","Alpha Deathworm","Alpha Fire Wyvern",
-"Alpha Karkinos","Alpha Leedsichthys","Alpha Megalodon",
-"Alpha Mosasaur","Alpha Raptor","Alpha Rex","Alpha Tusoteuthis",
-"Amargasaurus","Ammonite","Andrewsarchus","Anglerfish",
-"Ankylosaurus","Araneo","Archaeopteryx","Archelon","Argentavis",
-"Arthropluera","Astrocetus","Astrodelphis","Baryonyx","Basilisk",
-"Basilosaurus","Beelzebufo","Beyla","Bison","Bloodstalker",
-"Boaratos","Brontosaurus","Broodmother Lysrix","Bulbdog",
-"Bunny Dodo","Carbonemys","Carcharodontosaurus","Carnotaurus",
-"Castoroides","Cat","Ceratosaurus","Chalicotherium","Cnidaria",
-"Coelacanth","Compy","Concavenator","Corrupted Master Controller",
-"Cosmo","Cryolophosaurus","Crystal Wyvern Queen","Daeodon",
-"Deathworm","Deinonychus","Deinosuchus","Deinotherium",
-"Desert Titan","Desmodus","Dilophosaur","Dimetrodon","Dimorphodon",
-"Dinopithecus King","Diplocaulus","Diplodocus","Dire Bear",
-"Direwolf","Dodo","Dodorex","Dodowyvern","Doedicurus","Dragon",
-"Dreadnoughtus","Dunkleosteus","Electrophorus","Equus","Eurypterid",
-"Fasolasuchus","Featherlight","Fenrisúlfr","Ferox","Fire Wyvern",
-"Fjordhawk","Forest Titan","Gacha","Gallimimus","Gasbags",
-"Giant Bee","Giganotosaurus","Gigantopithecus","Gigantoraptor",
-"Glowbug","Glowtail","Grand Tortugar","Griffin","Hati",
-"Hesperornis","Hyaenodon","Ice Titan","Ice Wyvern","Ichthyornis",
-"Ichthyosaurus","Iguanodon","Jerboa","Kairuku","Kaprosuchus",
-"Karkinos","Kentrosaurus","King Titan","Lamprey","Leech",
-"Leedsichthys","Lightning Wyvern","Liopleurodon","Lymantria",
-"Maeguana","Maewing","Magmasaur","Mammoth","Managarmr","Manta",
-"Manticore","Mantis","Megachelon","Megalania","Megaloceros",
-"Megalodon","Megalosaurus","Meganeura","Megapithecus","Megatherium",
-"Mesopithecus","Microraptor","Moeder","Morellatops","Mosasaurus",
-"Moschops","Nameless","Noglin","Onyc","Otter","Overseer","Ovis",
-"Pachy","Pachyrhinosaurus","Paraceratherium","Parasaur",
-"Pegomastax","Pelagornis","Phiomia","Phoenix","Plesiosaur",
-"Poison Wyvern","Procoptodon","Pteranodon","Pulmonoscorpius",
-"Purlovia","Quetzal","Raptor","Ravager","Reaper King","Reaper Queen",
-"Rex","Rhyniognatha","Rock Drake","Rock Elemental","Rockwell",
-"Roll Rat","Sabertooth","Sabertooth Salmon","Sarco","Scout",
-"Seeker","Shadowmane","Shastasaurus","Shinehorn","Sinomacrops",
-"Sköll","Snow Owl","Spino","Stegosaurus","Steinbjörn",
-"Tek Parasaur","Tek Quetzal","Tek Raptor","Tek Rex","Tek Stegosaurus",
-"Tek Stryder","Terror Bird","Therizinosaur","Thorny Dragon",
-"Thylacoleo","Titanoboa","Titanomyrma","Titanosaur","Triceratops",
-"Trilobite","Troodon","Tropeognathus","Turkey","Tusoteuthis",
-"Unicorn","Velonasaur","Voidwyrm","Vulture","Woolly Rhino",
-"Wyvern","Xiphactinus","Yi Ling","Yutyrannus"
+var creatures = [
+
+"Achatina",
+"Acrocanthosaurus",
+"Allosaurus",
+"Amargasaurus",
+"Andrewsarchus",
+"Anglerfish",
+"Ankylosaurus",
+"Araneo",
+"Archaeopteryx",
+"Archelon",
+"Argentavis",
+"Arthropluera",
+"Astrocetus",
+"Astrodelphis",
+"Basilisk",
+"Basilosaurus",
+"Baryonyx",
+"Beelzebufo",
+"Bison",
+"Bloodstalker",
+"Boaratos",
+"Brontosaurus",
+"Bulbdog",
+"Carbonemys",
+"Carcharodontosaurus",
+"Carnotaurus",
+"Castoroides",
+"Cat",
+"Ceratosaurus",
+"Chalicotherium",
+"Compy",
+"Concavenator",
+"Cosmo",
+"Cryolophosaurus",
+"Daeodon",
+"Deinonychus",
+"Deinosuchus",
+"Deinotherium",
+"Desmodus",
+"Dilophosaur",
+"Dimetrodon",
+"Dimorphodon",
+"Diplocaulus",
+"Diplodocus",
+"Dire Bear",
+"Direwolf",
+"Dodo",
+"Doedicurus",
+"Dreadnoughtus",
+"Dunkleosteus",
+"Electrophorus",
+"Equus",
+"Fasolasuchus",
+"Featherlight",
+"Ferox",
+"Fjordhawk",
+"Gallimimus",
+"Gacha",
+"Gasbags",
+"Giant Bee",
+"Giganotosaurus",
+"Gigantopithecus",
+"Gigantoraptor",
+"Glowtail",
+"Grand Tortugar",
+"Griffin",
+"Hesperornis",
+"Hyaenodon",
+"Ichthyornis",
+"Ichthyosaurus",
+"Iguanodon",
+"Jerboa",
+"Kairuku",
+"Kaprosuchus",
+"Karkinos",
+"Kentrosaurus",
+"Leedsichthys",
+"Liopleurodon",
+"Lymantria",
+"Maeguana",
+"Maewing",
+"Magmasaur",
+"Mammoth",
+"Managarmr",
+"Manta",
+"Mantis",
+"Megachelon",
+"Megalania",
+"Megaloceros",
+"Megalodon",
+"Megalosaurus",
+"Megatherium",
+"Mesopithecus",
+"Microraptor",
+"Morellatops",
+"Mosasaurus",
+"Moschops",
+"Noglin",
+"Onyc",
+"Otter",
+"Ovis",
+"Pachy",
+"Pachyrhinosaurus",
+"Paraceratherium",
+"Parasaur",
+"Pegomastax",
+"Pelagornis",
+"Phiomia",
+"Phoenix",
+"Plesiosaur",
+"Procoptodon",
+"Pteranodon",
+"Pulmonoscorpius",
+"Purlovia",
+"Quetzal",
+"Raptor",
+"Ravager",
+"Reaper King",
+"Rex",
+"Rhyniognatha",
+"Rock Drake",
+"Rock Elemental",
+"Roll Rat",
+"Sabertooth",
+"Sarco",
+"Shadowmane",
+"Shastasaurus",
+"Shinehorn",
+"Sinomacrops",
+"Snow Owl",
+"Spino",
+"Stegosaurus",
+"Tek Parasaur",
+"Tek Quetzal",
+"Tek Raptor",
+"Tek Rex",
+"Tek Stegosaurus",
+"Tek Stryder",
+"Terror Bird",
+"Therizinosaur",
+"Thorny Dragon",
+"Thylacoleo",
+"Titanosaur",
+"Triceratops",
+"Troodon",
+"Tropeognathus",
+"Tusoteuthis",
+"Unicorn",
+"Velonasaur",
+"Voidwyrm",
+"Vulture",
+"Woolly Rhino",
+"Wyvern",
+"Fire Wyvern",
+"Ice Wyvern",
+"Lightning Wyvern",
+"Poison Wyvern",
+"Xiphactinus",
+"Yi Ling",
+"Yutyrannus"
+
 ];
 
-const STATS=[
+
+var statTypes = [
+
 ["health","Health"],
 ["stamina","Stamina"],
 ["oxygen","Oxygen"],
 ["food","Food"],
 ["weight","Weight"],
 ["melee","Melee Damage"]
+
 ];
 
-let custom=JSON.parse(
-localStorage.getItem("arkCustomCreatures")||"[]"
+
+var customCreatures = [];
+
+var savedStats = {};
+
+var currentCreature = "";
+
+var savedOnly = false;
+
+
+/* LOAD SAVED DATA */
+
+try {
+
+  customCreatures =
+    JSON.parse(
+      localStorage.getItem("arkCustomCreatures")
+    ) || [];
+
+  savedStats =
+    JSON.parse(
+      localStorage.getItem("arkBreedingStats")
+    ) || {};
+
+}
+catch(error) {
+
+  customCreatures = [];
+  savedStats = {};
+
+}
+
+
+/* ELEMENTS */
+
+var search =
+  document.getElementById("search");
+
+var creatureList =
+  document.getElementById("creatureList");
+
+var creatureCount =
+  document.getElementById("creatureCount");
+
+var browser =
+  document.getElementById("browser");
+
+var editor =
+  document.getElementById("editor");
+
+var creatureTitle =
+  document.getElementById("creatureTitle");
+
+var statRows =
+  document.getElementById("statRows");
+
+
+/* GET ALL CREATURES */
+
+function getAllCreatures() {
+
+  var combined =
+    creatures.concat(customCreatures);
+
+  var unique = [];
+
+  combined.forEach(function(name) {
+
+    if (unique.indexOf(name) === -1) {
+      unique.push(name);
+    }
+
+  });
+
+  unique.sort();
+
+  return unique;
+
+}
+
+
+/* DOES CREATURE HAVE SAVED STATS */
+
+function hasSavedStats(name) {
+
+  if (!savedStats[name]) {
+    return false;
+  }
+
+  var data = savedStats[name];
+
+  for (var key in data) {
+
+    if (
+      data[key].points ||
+      data[key].value
+    ) {
+      return true;
+    }
+
+  }
+
+  return false;
+
+}
+
+
+/* DRAW CREATURE LIST */
+
+function renderCreatures() {
+
+  var query =
+    search.value.toLowerCase();
+
+  var all =
+    getAllCreatures();
+
+  var filtered =
+    all.filter(function(name) {
+
+      var matchesSearch =
+        name.toLowerCase()
+        .indexOf(query) !== -1;
+
+      var matchesSaved =
+        !savedOnly ||
+        hasSavedStats(name);
+
+      return (
+        matchesSearch &&
+        matchesSaved
+      );
+
+    });
+
+
+  creatureCount.textContent =
+    filtered.length +
+    " creatures";
+
+
+  creatureList.innerHTML = "";
+
+
+  filtered.forEach(function(name) {
+
+    var row =
+      document.createElement("div");
+
+    row.className = "creature";
+
+
+    var left =
+      document.createElement("div");
+
+    left.className =
+      "creature-name";
+
+    left.textContent = name;
+
+
+    row.appendChild(left);
+
+
+    if (hasSavedStats(name)) {
+
+      var saved =
+        document.createElement("div");
+
+      saved.className = "saved";
+
+      saved.textContent = "Saved ✓";
+
+      row.appendChild(saved);
+
+    }
+
+
+    row.addEventListener(
+      "click",
+      function() {
+
+        openCreature(name);
+
+      }
+    );
+
+
+    creatureList.appendChild(row);
+
+  });
+
+}
+
+
+/* OPEN CREATURE */
+
+function openCreature(name) {
+
+  currentCreature = name;
+
+  creatureTitle.textContent = name;
+
+  statRows.innerHTML = "";
+
+  var existing =
+    savedStats[name] || {};
+
+
+  statTypes.forEach(function(stat) {
+
+    var key = stat[0];
+    var label = stat[1];
+
+
+    var row =
+      document.createElement("div");
+
+    row.className =
+      "stat-row";
+
+
+    var statName =
+      document.createElement("div");
+
+    statName.className =
+      "stat-name";
+
+    statName.textContent =
+      label;
+
+
+    var points =
+      document.createElement("input");
+
+    points.type = "number";
+
+    points.inputMode =
+      "numeric";
+
+    points.placeholder =
+      "0";
+
+    points.id =
+      key + "_points";
+
+
+    if (
+      existing[key] &&
+      existing[key].points
+    ) {
+
+      points.value =
+        existing[key].points;
+
+    }
+
+
+    var value =
+      document.createElement("input");
+
+    value.type = "number";
+
+    value.step = "any";
+
+    value.inputMode =
+      "decimal";
+
+    value.placeholder =
+      key === "melee"
+      ? "%"
+      : "0";
+
+    value.id =
+      key + "_value";
+
+
+    if (
+      existing[key] &&
+      existing[key].value
+    ) {
+
+      value.value =
+        existing[key].value;
+
+    }
+
+
+    row.appendChild(statName);
+
+    row.appendChild(points);
+
+    row.appendChild(value);
+
+    statRows.appendChild(row);
+
+  });
+
+
+  browser.style.display =
+    "none";
+
+  editor.style.display =
+    "block";
+
+  window.scrollTo(0,0);
+
+}
+
+
+/* SAVE */
+
+function saveStats() {
+
+  if (!currentCreature) {
+    return;
+  }
+
+
+  var data = {};
+
+
+  statTypes.forEach(function(stat) {
+
+    var key = stat[0];
+
+
+    var points =
+      document.getElementById(
+        key + "_points"
+      ).value;
+
+
+    var value =
+      document.getElementById(
+        key + "_value"
+      ).value;
+
+
+    data[key] = {
+
+      points: points,
+
+      value: value
+
+    };
+
+  });
+
+
+  savedStats[currentCreature] =
+    data;
+
+
+  localStorage.setItem(
+    "arkBreedingStats",
+    JSON.stringify(savedStats)
+  );
+
+
+  alert(
+    currentCreature +
+    " stats saved"
+  );
+
+}
+
+
+/* CLEAR */
+
+function clearStats() {
+
+  if (!currentCreature) {
+    return;
+  }
+
+
+  var answer =
+    confirm(
+      "Clear all stats for " +
+      currentCreature +
+      "?"
+    );
+
+
+  if (!answer) {
+    return;
+  }
+
+
+  delete savedStats[currentCreature];
+
+
+  localStorage.setItem(
+    "arkBreedingStats",
+    JSON.stringify(savedStats)
+  );
+
+
+  openCreature(
+    currentCreature
+  );
+
+}
+
+
+/* BACK */
+
+function goBack() {
+
+  editor.style.display =
+    "none";
+
+  browser.style.display =
+    "block";
+
+  currentCreature = "";
+
+  renderCreatures();
+
+}
+
+
+/* ADD MODDED CREATURE */
+
+function addCreature() {
+
+  var name =
+    prompt(
+      "Enter creature name"
+    );
+
+
+  if (!name) {
+    return;
+  }
+
+
+  name =
+    name.trim();
+
+
+  if (!name) {
+    return;
+  }
+
+
+  if (
+    creatures.indexOf(name) === -1 &&
+    customCreatures.indexOf(name) === -1
+  ) {
+
+    customCreatures.push(name);
+
+
+    localStorage.setItem(
+      "arkCustomCreatures",
+      JSON.stringify(
+        customCreatures
+      )
+    );
+
+  }
+
+
+  search.value = name;
+
+  savedOnly = false;
+
+  renderCreatures();
+
+}
+
+
+/* BUTTON EVENTS */
+
+search.addEventListener(
+  "input",
+  renderCreatures
 );
 
-let db=JSON.parse(
-localStorage.getItem("arkBreedingStats")||"{}"
+
+document
+.getElementById("addButton")
+.addEventListener(
+  "click",
+  addCreature
 );
 
-let current=null;
-let savedOnly=false;
 
-function all(){
-return [...new Set([...DEFAULTS,...custom])]
-.sort((a,b)=>a.localeCompare(b));
-}
+document
+.getElementById("savedButton")
+.addEventListener(
+  "click",
+  function() {
 
-function render(){
+    savedOnly =
+      !savedOnly;
 
-let query=(q.value||"").toLowerCase();
+    this.textContent =
+      savedOnly
+      ? "Show All"
+      : "Saved Only";
 
-let a=all().filter(
-n=>n.toLowerCase().includes(query)
+    renderCreatures();
+
+  }
 );
 
-if(savedOnly){
-a=a.filter(
-n=>db[n]&&Object.values(db[n])
-.some(x=>x.points||x.value)
-);
-}
 
-count.textContent=
-`${a.length} creature${a.length===1?"":"s"}`;
-
-list.innerHTML=a.map(n=>`
-<div class="creature"
-onclick='openCreature(${JSON.stringify(n)})'>
-
-<div>
-<b>${esc(n)}</b><br>
-<small>
-${custom.includes(n)?"Modded / custom":"ARK creature"}
-</small>
-</div>
-
-${db[n]?
-"<span class=saved>Saved ✓</span>"
-:""}
-
-</div>
-`).join("");
-
-}
-
-function esc(s){
-
-return s.replace(
-/[&<>"]/g,
-m=>({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;"
-}[m])
+document
+.getElementById("backButton")
+.addEventListener(
+  "click",
+  goBack
 );
 
-}
 
-function openCreature(n){
-
-current=n;
-title.textContent=n;
-
-let d=db[n]||{};
-
-rows.innerHTML=STATS.map(([k,label])=>`
-
-<div class="statrow">
-
-<div class="statname">
-${label}
-</div>
-
-<input
-inputmode="numeric"
-id="${k}p"
-placeholder="0"
-value="${d[k]?.points??""}">
-
-<input
-inputmode="decimal"
-id="${k}v"
-placeholder="${k==="melee"?"%":"0"}"
-value="${d[k]?.value??""}">
-
-</div>
-
-`).join("");
-
-browser.style.display="none";
-editor.style.display="block";
-
-scrollTo(0,0);
-
-}
-
-function closeEditor(){
-
-editor.style.display="none";
-browser.style.display="block";
-
-current=null;
-
-render();
-
-}
-
-function saveCurrent(){
-
-let d={};
-
-STATS.forEach(([k])=>{
-
-d[k]={
-points:document.getElementById(k+"p").value,
-value:document.getElementById(k+"v").value
-};
-
-});
-
-db[current]=d;
-
-localStorage.setItem(
-"arkBreedingStats",
-JSON.stringify(db)
+document
+.getElementById("saveButton")
+.addEventListener(
+  "click",
+  saveStats
 );
 
-alert("Saved");
 
-closeEditor();
-
-}
-
-function clearCurrent(){
-
-if(confirm(
-"Clear all saved stats for "+current+"?"
-)){
-
-delete db[current];
-
-localStorage.setItem(
-"arkBreedingStats",
-JSON.stringify(db)
+document
+.getElementById("clearButton")
+.addEventListener(
+  "click",
+  clearStats
 );
 
-openCreature(current);
 
-}
+/* INITIAL LOAD */
 
-}
-
-function addCreature(){
-
-let n=prompt(
-"Modded creature name:"
-);
-
-if(!n)return;
-
-n=n.trim();
-
-if(!n)return;
-
-if(
-!custom.includes(n)&&
-!DEFAULTS.includes(n)
-){
-
-custom.push(n);
-
-localStorage.setItem(
-"arkCustomCreatures",
-JSON.stringify(custom)
-);
-
-}
-
-q.value=n;
-savedOnly=false;
-
-render();
-
-}
-
-function showSaved(){
-
-savedOnly=!savedOnly;
-
-render();
-
-}
-
-render();
+renderCreatures();
 
 </script>
 
